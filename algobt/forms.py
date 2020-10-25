@@ -33,10 +33,9 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 class EntryConditionForm(forms.ModelForm):
     class Meta:
         model = EntryConditionModel
-        fields = ('field_1', 'field_2')
+        fields = ('field_1',)
         labels = {
             'field_1': 'Choose',
-            'field_2': 'Choose',
         }
         widgets = {
             'field_1': forms.RadioSelect(attrs={
