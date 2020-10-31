@@ -21,7 +21,7 @@ class EntryConditionModel(models.Model):
 class EntryConditionLevel_1(models.Model):
     level_1 = models.ForeignKey(
         EntryConditionModel,
-        on_delete=models.CASCADE, # verbose_name = '',
+        on_delete=models.CASCADE,  # verbose_name = '',
     )
     option = models.CharField(max_length=100)
 
@@ -51,7 +51,7 @@ class EntryConditionLevel_2(models.Model):
         return f"{self.level_2} | {self.CondOption}"
 
 
-class EntryConditionField_2(models.Model):
+class EntryConditionField_2(models.Model):  # less_than, less_than_equal_to, equal_to...
     condition = models.CharField(
         max_length=100,
         # verbose_name= ''
@@ -65,10 +65,10 @@ class EntryConditionField_2(models.Model):
         return f"Entry Condition :- {self.condition}"
 
 
-class EntryConditionField_3(models.Model):
+class EntryConditionField_3(models.Model):  # up, down, 9:15, 9:16, ....
     field_1 = models.ForeignKey(
         EntryConditionModel,
-        on_delete = models.CASCADE,
+        on_delete=models.CASCADE,
         # verbose_name = '',
     )
     variable = models.CharField(
@@ -91,7 +91,7 @@ class TrailConditionModel(models.Model):
     )  # {same as entry condition for addition of profit and risk_value}
     field_2 = models.CharField(
         max_length=100,
-        verbose_name = '',
+        verbose_name='',
     )  # {"less_than_equal_to","less_than","equal_to","greater_than","greater_than_equal_to"}
 
     class Meta:

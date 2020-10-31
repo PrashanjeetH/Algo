@@ -31,6 +31,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 
 
 class EntryConditionForm(forms.ModelForm):
+
     class Meta:
         model = EntryConditionModel
         fields = ('field_1',)
