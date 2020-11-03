@@ -53,19 +53,37 @@ def about(request):
     )
 
 
-# @login_required(redirect_field_name='login')
+@login_required(redirect_field_name='login')
 def conditionForm(request):
-    if request.POST:
-        print(request.POST)
-        print(request.POST.dict())
-        return redirect('home')
-    else:
-        return render(
-            request,
-            'app/conditionform.html',
-            {
-                'title': 'Condition Form',
-                'message': 'Your application Condition Form page.',
-                'year': datetime.now().year,
-            }
-        )
+    if request.user.is_authenticated:
+        if request.POST:
+            raw_data = {'username': request.user, 'data': request.POST.dict()}
+            new_data = UserDataModel(**raw_data)
+            new_data.save()
+            return redirect('home')
+        else:
+            return render(
+                request,
+                'app/conditionform.html',
+                {
+                    'title': 'Condition Form',
+                    'message': 'Your application Condition Form page.',
+                    'year': datetime.now().year,
+                }
+            )
+
+
+@login_required(redirect_field_name='login')
+def ShowDataRecords(request):
+    # Double Check on user authentication
+    if request.user.is_authenticated:
+        # collect all the data from DB belonging to the user
+        allRecords = UserDataModel.objects.filter(usename=request.user)
+        context = {'records': allRecords}
+        return render(request, 'showRecords.html', context)
+
+@login_required(redirect_field_name='login')
+def DownloadDataRecords(request):
+    # Double check on user autentication
+    if request.user.is_authenticated:
+        pass

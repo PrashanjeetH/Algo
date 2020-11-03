@@ -6,9 +6,11 @@
 <h3>{{ message }}</h3>
 
 {#  Condition Form starts here!  #}
-    <fieldset id="chained-set">
+    <form method="post" class="">
+        {% csrf_token %}
+        <fieldset id="chained-set">
         <label for="datacenter">
-            <select id="datacenter" class="form-control">
+            <select id="datacenter" class="form-control" name="datacenter">
                 <option value="am1">US North</option>
                 <option value="am2" selected="selected">US South</option>
                 <option value="em1">Europe</option>
@@ -16,7 +18,7 @@
         </label>
 
         <label for="desktoptype">
-            <select id="desktoptype" class="form-control">
+            <select id="desktoptype" class="form-control" name="desktoptype">
                 <option value="xd_dedicated" data-available-with="am1,am2,em1">Dedicated Desktop</option>
                 <option value="xd_pooled" data-available-with="em1">Pooled Desktop</option>
                 <option value="xa_shared" selected="selected" data-available-with="am1,em1">Shared Desktop</option>
@@ -24,24 +26,36 @@
         </label>
 
         <label for="os">
-            <select id="os" class="form-control">
-            <option value="windows 7" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated,em1+xd_pooled">Windows 7</option>
+            <select id="os" name="os" class="form-control">
+                <option value="windows 7" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated,em1+xd_pooled">Windows 7</option>
                 <option value="windows 10" selected="selected" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated">Windows 10</option>
                 <option value="ws08" data-available-with="am1+xa_shared,em1+xa_shared">Server 2008 R2</option>
                 <option value="ws16" selected="selected" data-available-with="am1+xa_shared">Server 2016</option>
             </select>
         </label>
 
-{#        <label for="bu">#}
-{#            <select id="bu" class="form-control">#}
-{#                <option value="default" selected="selected" data-available-with="am1+*+*,am2+*+*,em1+*+*,ap1+*+*">Default</option>#}
-{#                <option value="fin" data-available-with="am1+xd_dedicated+windows*,am2+xd_dedicated+windows 7">Financial</option>#}
-{#                <option value="lac" data-available-with="am1+xd_dedicated+*,am2+xd_dedicated+*">Latin America</option>#}
-{#            </select>#}
-{#        </label>#}
+        <label for="bu">
+            <select id="bu" class="form-control" name="bu">
+                <option value="default" selected="selected" data-available-with="am1+*+*,am2+*+*,em1+*+*,ap1+*+*">Default</option>
+                <option value="fin" data-available-with="am1+xd_dedicated+windows*,am2+xd_dedicated+windows 7">Financial</option>
+                <option value="lac" data-available-with="am1+xd_dedicated+*,am2+xd_dedicated+*">Latin America</option>
+            </select>
+        </label>
     </fieldset>
-
-
+        <div class="checkbox-card">
+            <label for="">
+                <strong>Do you wanna add Trial Condition</strong>
+                <input type="checkbox" class="checkme" checked> Yes
+            </label>
+            <div class="pass-box">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Replace with trial condition form..."
+                       name="inputTrialCondition">
+            </div>
+        </div><br/>
+    <input class="btn btn-default" type="submit">
+    </form>
 
 {% endblock %}
 
@@ -54,5 +68,17 @@
         $("#desktoptype").chainedTo("#datacenter");
         $("#os").chainedTo("#datacenter,#desktoptype");
         $("#bu").chainedTo("#datacenter,#desktoptype,#os");
+
+      	$(function(){
+      		$(".checkme").click(function(event) {
+      			var x = $(this).is(':checked');
+      			if (x === true) {
+              $(this).parents(".checkbox-card").find('.pass-box').show();
+      			}
+      			else{
+              $(this).parents(".checkbox-card").find('.pass-box').hide();
+      			}
+      		});
+      	})
     </script>
 {% endblock %}
