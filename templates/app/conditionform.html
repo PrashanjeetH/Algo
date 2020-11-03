@@ -1,0 +1,58 @@
+{% extends "app/layout.html" %}
+{% load static %}
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+{#  Condition Form starts here!  #}
+    <fieldset id="chained-set">
+        <label for="datacenter">
+            <select id="datacenter" class="form-control">
+                <option value="am1">US North</option>
+                <option value="am2" selected="selected">US South</option>
+                <option value="em1">Europe</option>
+            </select>
+        </label>
+
+        <label for="desktoptype">
+            <select id="desktoptype" class="form-control">
+                <option value="xd_dedicated" data-available-with="am1,am2,em1">Dedicated Desktop</option>
+                <option value="xd_pooled" data-available-with="em1">Pooled Desktop</option>
+                <option value="xa_shared" selected="selected" data-available-with="am1,em1">Shared Desktop</option>
+            </select>
+        </label>
+
+        <label for="os">
+            <select id="os" class="form-control">
+            <option value="windows 7" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated,em1+xd_pooled">Windows 7</option>
+                <option value="windows 10" selected="selected" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated">Windows 10</option>
+                <option value="ws08" data-available-with="am1+xa_shared,em1+xa_shared">Server 2008 R2</option>
+                <option value="ws16" selected="selected" data-available-with="am1+xa_shared">Server 2016</option>
+            </select>
+        </label>
+
+{#        <label for="bu">#}
+{#            <select id="bu" class="form-control">#}
+{#                <option value="default" selected="selected" data-available-with="am1+*+*,am2+*+*,em1+*+*,ap1+*+*">Default</option>#}
+{#                <option value="fin" data-available-with="am1+xd_dedicated+windows*,am2+xd_dedicated+windows 7">Financial</option>#}
+{#                <option value="lac" data-available-with="am1+xd_dedicated+*,am2+xd_dedicated+*">Latin America</option>#}
+{#            </select>#}
+{#        </label>#}
+    </fieldset>
+
+
+
+{% endblock %}
+
+
+{# Additional scripts #}
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static '/app/scripts/jquery.chainedTo.min.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $("#desktoptype").chainedTo("#datacenter");
+        $("#os").chainedTo("#datacenter,#desktoptype");
+        $("#bu").chainedTo("#datacenter,#desktoptype,#os");
+    </script>
+{% endblock %}

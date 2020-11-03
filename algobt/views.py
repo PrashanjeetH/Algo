@@ -1,10 +1,12 @@
 from datetime import datetime
-
-from django.shortcuts import render
-from django.http import HttpRequest
-
+from django.shortcuts import render, redirect
+from django.http import HttpRequest, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+
+
+from algobt.models import *
 
 
 def home(request):
@@ -49,3 +51,21 @@ def about(request):
             'year': datetime.now().year,
         }
     )
+
+
+# @login_required(redirect_field_name='login')
+def conditionForm(request):
+    if request.POST:
+        print(request.POST)
+        print(request.POST.dict())
+        return redirect('home')
+    else:
+        return render(
+            request,
+            'app/conditionform.html',
+            {
+                'title': 'Condition Form',
+                'message': 'Your application Condition Form page.',
+                'year': datetime.now().year,
+            }
+        )
