@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class UserDataModel(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE, )
     data = models.CharField(max_length=2000)
-    created_on = models.DateTimeField(auto_now_add=True, )
+    record_file = models.FileField(upload_to='media%H%M%S')
+    created_on = models.DateTimeField(auto_now_add=True,)
 
     class Meta:
         verbose_name_plural = 'Records'

@@ -1,10 +1,9 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, HttpResponse, Http404
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-
 
 from algobt.models import *
 
@@ -78,12 +77,18 @@ def ShowDataRecords(request):
     # Double Check on user authentication
     if request.user.is_authenticated:
         # collect all the data from DB belonging to the user
-        allRecords = UserDataModel.objects.filter(usename=request.user)
-        context = {'records': allRecords}
-        return render(request, 'showRecords.html', context)
+        allRecords = UserDataModel.objects.filter(username=request.user)
+        context = {
+            'records': allRecords,
+            'year': datetime.now().year,
+        }
+        return render(request, 'app/showrecords.html', context)
+
 
 @login_required(redirect_field_name='login')
-def DownloadDataRecords(request):
+def DownloadDataRecords(request, record_id):
     # Double check on user autentication
     if request.user.is_authenticated:
-        pass
+        return HttpResponse("<h1>" + str(record_id) + "</h1>")
+    else:
+        return Http404('NOT FOUND')

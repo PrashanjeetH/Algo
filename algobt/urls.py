@@ -20,5 +20,8 @@ urlpatterns = [
          ),
          name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
-    path('conditionform/', views.conditionForm, name='ConditionForm')
+
+    path('conditionform/', views.conditionForm, name='ConditionForm'),
+    path('showrecords/', views.ShowDataRecords, name='ShowRecords'),
+    path('downloadrecords/<int:record_id>', views.DownloadDataRecords, name='DownloadRecords'),
 ]

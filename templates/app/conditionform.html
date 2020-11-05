@@ -42,10 +42,11 @@
             </select>
         </label>
     </fieldset>
+        
         <div class="checkbox-card">
             <label for="">
                 <strong>Do you wanna add Trial Condition</strong>
-                <input type="checkbox" class="checkme" checked> Yes
+                <input type="checkbox" class="trial_cond" checked> Yes
             </label>
             <div class="pass-box">
                 <input type="text"
@@ -70,10 +71,10 @@
         $("#bu").chainedTo("#datacenter,#desktoptype,#os");
 
       	$(function(){
-      		$(".checkme").click(function(event) {
+      		$(".trial_cond").click(function(event) {
       			var x = $(this).is(':checked');
       			if (x === true) {
-              $(this).parents(".checkbox-card").find('.pass-box').show();
+              $(this).parents(".checkbox-card").find(".pass-box").show();
       			}
       			else{
               $(this).parents(".checkbox-card").find('.pass-box').hide();
