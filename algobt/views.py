@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, JsonResponse, HttpResponse, Http404
+from django.http import HttpRequest, HttpResponse, Http404, FileResponse
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -56,10 +56,12 @@ def about(request):
 def conditionForm(request):
     if request.user.is_authenticated:
         if request.POST:
-            raw_data = {'username': request.user, 'data': request.POST.dict()}
-            new_data = UserDataModel(**raw_data)
-            new_data.save()
-            return redirect('home')
+            if FormValidation(request):
+                raw_data = {'username': request.user, 'data': request.POST.dict()}
+                new_data = UserDataModel(**raw_data)
+                new_data.save()
+                return redirect('home')
+
         else:
             return render(
                 request,
@@ -89,6 +91,22 @@ def ShowDataRecords(request):
 def DownloadDataRecords(request, record_id):
     # Double check on user autentication
     if request.user.is_authenticated:
-        return HttpResponse("<h1>" + str(record_id) + "</h1>")
+        return FileResponse()  # Pass filePointer as argument
+        # return HttpResponse("<h1>" + str(record_id) + "</h1>")
     else:
         return Http404('NOT FOUND')
+
+
+def FormValidation(raw_data):
+    if raw_data.POST:
+        print("Successfull!\n")
+        # print(raw_data.user)
+        # print(raw_data.user.username)
+        # print(raw_data.user.first_name)
+        # print(raw_data.user.last_name)
+        # print(raw_data.user.email)
+        # print(raw_data.content_params)
+        # print(raw_data.path)
+        dict_data = raw_data.POST.dict()
+        print(dict_data)
+    return True

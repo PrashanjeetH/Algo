@@ -9,44 +9,71 @@
     <form method="post" class="">
         {% csrf_token %}
         <fieldset id="chained-set">
-        <label for="datacenter">
-            <select id="datacenter" class="form-control" name="datacenter">
-                <option value="am1">US North</option>
-                <option value="am2" selected="selected">US South</option>
-                <option value="em1">Europe</option>
+{# Entry Condition Form Set #}
+        <label for="enc-field-1">
+            <select id="enc-field-1" class="form-control" name="enc-field-1">
+                <option selected disabled >--choose--</option>
+                <option value="{% now "h:i:s" %}">Time</option>
+                <option value="{% now "W l" %}">Day</option>
+                <option value="ma">MA_Cross</option>
+                <option value="bb">BB</option>
+                <option value="st">ST</option>
+                <option value="macd">MACD</option>
+                <option value="pattern">Pattern No.</option>
             </select>
         </label>
 
-        <label for="desktoptype">
-            <select id="desktoptype" class="form-control" name="desktoptype">
-                <option value="xd_dedicated" data-available-with="am1,am2,em1">Dedicated Desktop</option>
-                <option value="xd_pooled" data-available-with="em1">Pooled Desktop</option>
-                <option value="xa_shared" selected="selected" data-available-with="am1,em1">Shared Desktop</option>
+        <label for="enc-field-1-level-1" >
+            <select id="enc-field-1-level-1" style="display: none" class="form-control" name="enc-field-1-level-1">
+                <option value="ma_short" selected="selected" data-available-with="ma">Short</option>
+                <option value="ma_long" data-available-with="ma">Long</option>
+                <option value="bb_length" data-available-with="bb">Length</option>
+                <option value="bb_mult" data-available-with="bb">Mult</option>
+                <option value="st_length" data-available-with="st">Length</option>
+                <option value="st_factor" data-available-with="st">Factor</option>
+                <option value="macd_fast" data-available-with="macd">Fast L</option>
+                <option value="macd_slow" data-available-with="macd">slow L</option>
+                <option value="macd_source" data-available-with="macd">Source</option>
+                <option value="pattern_1" data-available-with="pattern">1</option>
+                <option value="pattern_2" data-available-with="pattern">2</option>
+                <option value="pattern_3" data-available-with="pattern">3</option>
+                <option value="pattern_4" data-available-with="pattern">4</option>
             </select>
         </label>
 
-        <label for="os">
-            <select id="os" name="os" class="form-control">
-                <option value="windows 7" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated,em1+xd_pooled">Windows 7</option>
-                <option value="windows 10" selected="selected" data-available-with="am1+xd_dedicated,am2+xd_dedicated,em1+xd_dedicated">Windows 10</option>
-                <option value="ws08" data-available-with="am1+xa_shared,em1+xa_shared">Server 2008 R2</option>
-                <option value="ws16" selected="selected" data-available-with="am1+xa_shared">Server 2016</option>
+        <label for="enc-field-1-level-2" >
+            <select id="enc-field-1-level-2" style="display: none" name="enc-field-1-level-2" class="form-control">
+                <option value="wasd" selected="selected" data-available-with="ma+ma_short">mashort 1</option>
+                {% for i in '12345678' %}
+                {% endfor %}
+            </select>
+        </label>
+        <label for="time_">
+            <input type="time" max="15:30" min="09:15" required id="time_" name="time_field_4" class="form-control" style="display: none">
+        </label>
+        <label for="day_">
+            <select id="day_" style="display: none" class="form-control" name="day_field_4">
+                <option value="monday" selected="selected">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
             </select>
         </label>
 
-        <label for="bu">
-            <select id="bu" class="form-control" name="bu">
-                <option value="default" selected="selected" data-available-with="am1+*+*,am2+*+*,em1+*+*,ap1+*+*">Default</option>
-                <option value="fin" data-available-with="am1+xd_dedicated+windows*,am2+xd_dedicated+windows 7">Financial</option>
-                <option value="lac" data-available-with="am1+xd_dedicated+*,am2+xd_dedicated+*">Latin America</option>
+        <label for="enc-field-4">
+            <select id="enc-field-4" style="display: none" class="form-control" name="enc-field-4">
+                <option value="default" selected="selected" data-available-with="am1,am2,em1">Default</option>
+                <option value="fin" data-available-with="am1">Financial</option>
+                <option value="lac" data-available-with="am1,am2">Latin America</option>
             </select>
         </label>
     </fieldset>
-        
+
         <div class="checkbox-card">
             <label for="">
                 <strong>Do you wanna add Trial Condition</strong>
-                <input type="checkbox" class="trial_cond" checked> Yes
+                <input type="checkbox" class="trial_cond" checked name="checkbox"> Yes
             </label>
             <div class="pass-box">
                 <input type="text"
@@ -66,9 +93,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="{% static '/app/scripts/jquery.chainedTo.min.js' %}" type="text/javascript" charset="utf-8"></script>
     <script>
-        $("#desktoptype").chainedTo("#datacenter");
-        $("#os").chainedTo("#datacenter,#desktoptype");
-        $("#bu").chainedTo("#datacenter,#desktoptype,#os");
+        $("#enc-field-1-level-1").chainedTo("#enc-field-1");
+        $("#enc-field-1-level-2").chainedTo("#enc-field-1,#enc-field-1-level-1");
+        $("#enc-field-4").chainedTo("#enc-field-1");
 
       	$(function(){
       		$(".trial_cond").click(function(event) {
@@ -81,5 +108,35 @@
       			}
       		});
       	})
+
+        $(document).ready(function(){
+            $('#enc-field-1').on('change', function() {
+                if ( this.value === '{% now "h:i:s" %}') {
+                    $("#time_").show();
+                    $("#day_").hide().val('');
+                    $("#enc-field-1-level-1").hide().val('');
+                    $("#enc-field-4").hide().val('');
+                    $("#enc-field-1-level-2").hide().val('');
+                }
+                else if (this.value === '{% now "W l" %}'){
+                    $("#day_").show();
+                    $("#time_").hide().val('');
+                    $("#enc-field-1-level-1").hide().val('');
+                    $("#enc-field-4").hide().val('');
+                    $("#enc-field-1-level-2").hide().val('');
+                }
+                else {
+                    $("#time_").hide().val('');
+                    $("#day_").hide().val('');
+                    $("#enc-field-1-level-1").show();
+                    $("#enc-field-1-level-1").show();
+                    $("#enc-field-1-level-2").show();
+                }
+                if (this.value === 'pattern')   {
+                    $("#enc-field-1-level-2").hide().val('');
+                }
+            });
+        });
+
     </script>
 {% endblock %}
