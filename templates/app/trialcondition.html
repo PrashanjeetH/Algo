@@ -1,0 +1,91 @@
+<div class="">
+
+  <strong>Trail Condition : </strong>
+    <fieldset id="chained-set">
+    {# Entry Condition Form Set #}
+
+  <div class="form-group" id='trl_div_parent_1'>
+    <label for="trl_parent_1"></label>
+    <select id="trl_parent_1" class="form-control" name="trl_parent_1">
+        <option selected disabled >--choose--</option>
+        <option value="{% now 'h:i:s' %}">Time</option>
+        <option value="{% now 'W l' %}">Day</option>
+        <option value="ma_cross">MA_Cross</option>
+        <option value="bb">BB</option>
+        <option value="st">ST</option>
+        <option value="macd">MACD</option>
+        <option value="pattern">Pattern No.</option>
+    </select>
+  </div>
+
+  <div class="form-group" style="display: none" id='trl_div_child_1_1'>
+    <label for="trl_child_1_1" ></label>
+    <select id="trl_child_1_1"  class="form-control" name="trl_child_1_1">
+        <option value="ma_short" selected="selected" data-available-with="ma_cross">Short</option>
+        <option value="ma_long" data-available-with="ma_cross">Long</option>
+        <option value="length" data-available-with="bb,st">Length</option>
+        <option value="bb_mult" data-available-with="bb">Mult</option>
+        <option value="st_factor" data-available-with="st">Factor</option>
+        <option value="macd_fast" data-available-with="macd">Fast L</option>
+        <option value="macd_slow" data-available-with="macd">slow L</option>
+        <option value="macd_source" data-available-with="macd">Source</option>
+        <option value="pattern_1" data-available-with="pattern">1</option>
+        <option value="pattern_2" data-available-with="pattern">2</option>
+        <option value="pattern_3" data-available-with="pattern">3</option>
+        <option value="pattern_4" data-available-with="pattern">4</option>
+    </select>
+  </div>
+
+  <div class="form-group" style="display:none" id="trl_div_child_1_2">
+    <label for="trl_child_1_2" ></label>
+        <select id="trl_child_1_2"  name="trl_child_1_2" class="form-control ">
+          <option value="default" data-available-with="*+*" selected >Choose</option>
+          <option value="01" data-available-with="ma_cross+ma_short,bb+length" >ma_cross Short 01 macd </option>
+          <option value="02" data-available-with="ma_cross+ma_short" >ma_cross Short 02</option>
+          <option value="03" data-available-with="ma_cross+ma_long" >ma_cross Long 01</option>
+        </select>
+  </div>
+
+  <div class="form-group" style="display: none" id='trl_div_time_field'>
+
+        <label for="time_">    </label>
+            <input type="time" max="15:30" min="09:15" id="trl_time_field" name="trl_time_field" class="form-control" >
+
+  </div>
+
+  <div class="form-group" style="display: none" id="trl_div_day_field">
+    <label for="day_"></label>
+        <select id="trl_day_field"  class="form-control " name="trl_day_field">
+          <option value="monday" selectedx  data-available-with="{% now 'W l' %}" >Monday</option>
+            <option value="tuesday" data-available-with="{% now 'W l' %}">Tuesday</option>
+            <option value="wednesday" data-available-with="{% now 'W l' %}">Wednesday</option>
+            <option value="thursday" data-available-with="{% now 'W l' %}">Thursday</option>
+            <option value="friday" data-available-with="{% now 'W l' %}">Friday</option>
+        </select>
+
+  </div>
+
+  <div class="form-group" id="trl_div_field_2">
+    <label for="trl_field_2"></label>
+        <select id="trl_field_2" class="form-control " name="trl_field_2">
+            <option value="lteqt" selected="selected">less_than_equal_to</option>
+            <option value="lt" >less_than</option>
+            <option value="eqt">equal_to</option>
+            <option value="gt" >greater_than</option>
+            <option value="gtet" >greater_than_equal_to</option>
+        </select>
+
+  </div>
+
+  <div class="form-group" style="display: none" id="trl_div_parent_3" >
+    <label for="trl_parent_3"></label>
+        <select id="trl_parent_3"  class="form-control " name="trl_parent_3">
+          <option value="" data-available-with="ma_cross">Option ONE for up and downcross</option>
+
+        </select>
+
+  </div>
+
+    </fieldset><hr>
+
+</div>

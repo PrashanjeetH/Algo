@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <link rel="stylesheet" type="text/javascript" href="{% static 'app/scripts/jquery.chainedTo.js' %}" />
-    <link rel="stylesheet" type="text/javascript" href="{% static 'app/scripts/jquery.chainedTo.min.js' %}" />
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,12 +41,13 @@
         </footer>
     </div>
 
-    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <!-- <script src="{#{% static 'app/scripts/jquery-1.10.2.js' %}#}"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/respond.js' %}"></script>
-
     {% block scripts %}
 
     {% endblock %}
+
 </body>
 </html>
