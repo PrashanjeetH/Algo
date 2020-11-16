@@ -11,6 +11,8 @@ $("#trl_child_1_1").chainedTo("#trl_parent_1");
 $("#trl_child_1_2").chainedTo("#trl_parent_1,#trl_child_1_1");
 $("#trl_parent_3").chainedTo("#trl_parent_1");
 
+$("#rsk_child_1_1").chainedTo("#rsk_parent_1");
+
 $(function(){(
 	$(".trial_cond").click(function(event) {
 		var x = $(this).is(':checked');
@@ -53,6 +55,7 @@ $(document).ready(function(){
 				}
 		});
 });
+
 $(document).ready(function(){
 		$("#exc_parent_1").on('change', function(abc) {
 			abc.preventDefault()
@@ -95,6 +98,9 @@ $(document).ready(function(){
   						$("#trl_div_child_1_1").hide().val('');
   						$("#trl_child_1_2").hide().val('');
   						$("#trl_div_parent_3").hide().val('');
+							$("#trl_risk_value").hide().val('');
+							$("#trl_profit").hide().val('');
+
   				}
   				else if (this.value === currentDay){ //For only Day
   						$("#trl_div_day_field").show();
@@ -102,6 +108,8 @@ $(document).ready(function(){
   						$("#trl_div_child_1_1").hide().val('');
   						$("#trl_div_child_1_2").hide().val('');
   						$("#trl_div_parent_3").hide().val('');
+							$("#trl_risk_value").hide().val('');
+							$("#trl_profit").hide().val('');
 
   				}
   				else {
@@ -110,9 +118,78 @@ $(document).ready(function(){
   						$("#trl_div_child_1_1").show();
   						$("#trl_div_child_1_2").show();
   						$("#trl_div_parent_3").show();
+							$("#trl_risk_value").hide().val('');
+							$("#trl+profit").hide().val('');
+
   				}
-  				if (this.value === 'pattern')   { // For Pattern
+					if (this.value === 'pattern')   { // For Pattern
   					$("#trl_div_child_1_2").hide().val('');
   				}
+					if (this.value === 'profit')   { // For Pattern
+						$("#trl_div_time_field").hide().val('');
+						$("#trl_div_day_field").hide().val('');
+						$("#trl_div_child_1_1").hide().val('');
+						$("#trl_child_1_2").hide().val('');
+						$("#trl_div_parent_3").hide().val('');
+						$("#trl_risk_value").hide().val('');
+						$("#trl_profit").show();
+					}
+					if (this.value === 'risk_value')   { // For Pattern
+						$("#trl_div_time_field").hide().val('');
+						$("#trl_div_day_field").hide().val('');
+						$("#trl_div_child_1_1").hide().val('');
+						$("#trl_child_1_2").hide().val('');
+						$("#trl_div_parent_3").hide().val('');
+						$("#trl_risk_value").hide().val('');
+						$("#trl_profit").hide().val('');
+						$("#trl_risk_value").show();
+					}
   		});
   });
+
+
+	$(document).ready(function(){
+			$("#rsk_child_1_1").on('change', function(abc) {
+				abc.preventDefault()
+					if (this.value === 'absolute')   { // For Pattern
+						$("#rsk_abs_value").show().val('');
+						$("#rsk_percentage").hide().val('');
+
+					}
+					else if (this.value === 'percentage')   { // For Pattern
+						$("#rsk_percentage").show().val('');
+						$("#rsk_abs_value").hide().val('');
+					}
+					else {
+						$("#rsk_abs_value").hide().val('');
+						$("#rsk_percentage").hide().val('');
+					}
+			});
+	});
+
+//  FOR ADD MORE BUTTON
+// 	$(document).ready(function() {
+//     var max_fields      = 10; //maximum input boxes allowed
+//     var wrapper         = $(".entry_wrapper"); //Fields wrapper
+//     var add_button      = $(".add_field_button"); //Add button ID
+//
+//     var x = 1; //initlal text box count
+//
+//
+//    $(add_button).click(function(e){ //on add input button click
+//         e.preventDefault();
+//         if(x < max_fields){ //max input box allowed
+// 					console.log(entryForm)
+// 		     //text box increment
+//             $(wrapper).append("entryForm"); //add input box
+//             x++;
+// 	  }
+//     });
+//
+//     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+//
+// 		e.preventDefault();
+// 		$(this).parent('div').remove();
+// 		x--;
+//     })
+// });

@@ -1,4 +1,6 @@
 {% load socialaccount %}
+{% load i18n %}
+
 {% if user.is_authenticated %}
 <form id="logoutForm" action="/logout/" method="post" class="navbar-right">
     {% csrf_token %}
@@ -11,7 +13,7 @@
 {% else %}
 
 <ul class="nav navbar-nav navbar-right">
-    <li><a href="{% url 'login' %}">Log in</a></li>
+    <li><a href="/accounts/login/">Log in</a></li>
     <li><a href="{% provider_login_url 'google' %}">Login with Google</a></li>
 </ul>
 

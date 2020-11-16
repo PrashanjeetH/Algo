@@ -58,8 +58,10 @@ AUTHENTICATION_BACKENDS = (
 'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-ACCOUNT_FORMS = {'login': 'algobt.forms.BootstrapAuthenticationForm'}
-
+# ACCOUNT_FORMS = {'login': 'algobt.forms.BootstrapAuthenticationForm'}
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE=True
+ACCOUNT_USERNAME_BLACKLIST=['admin','Admin','administrator','Administrator']
+ACCOUNT_USERNAME_MIN_LENGTH = 8
 
 SITE_ID = 2
 
@@ -97,7 +99,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request', # for all-auth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],

@@ -1,9 +1,7 @@
-<div class="">
-
+<div class="entry_wrapper">
   <strong>Entry Condition : </strong>
     <fieldset id="chained-set">
     {# Entry Condition Form Set #}
-
   <div class="form-group" id='enc_div_parent_1'>
     <label for="enc_parent_1"></label>
     <select id="enc_parent_1" class="form-control" name="enc_parent_1">
@@ -17,7 +15,6 @@
         <option value="pattern">Pattern No.</option>
     </select>
   </div>
-
   <div class="form-group" style="display: none" id='enc_div_child_1_1'>
     <label for="enc_child_1_1" ></label>
     <select id="enc_child_1_1"  class="form-control" name="enc_child_1_1">
@@ -35,24 +32,19 @@
         <option value="pattern_4" data-available-with="pattern">4</option>
     </select>
   </div>
-
   <div class="form-group" style="display:none" id="enc_div_child_1_2">
     <label for="enc_child_1_2" ></label>
         <select id="enc_child_1_2"  name="enc_child_1_2" class="form-control ">
-          <option value="default" data-available-with="*+*" selected >Choose</option>
+          <option value="default" disabled data-available-with="*+*" selected >Choose</option>
           <option value="01" data-available-with="ma_cross+ma_short,bb+length" >ma_cross Short 01 macd </option>
           <option value="02" data-available-with="ma_cross+ma_short" >ma_cross Short 02</option>
           <option value="03" data-available-with="ma_cross+ma_long" >ma_cross Long 01</option>
         </select>
   </div>
-
   <div class="form-group" style="display: none" id='enc_div_time_field'>
-
         <label for="time_">    </label>
             <input type="time" max="15:30" min="09:15" id="enc_time_field" name="enc_time_field" class="form-control" >
-
   </div>
-
   <div class="form-group" style="display: none" id="enc_div_day_field">
     <label for="day_"></label>
         <select id="enc_day_field"  class="form-control " name="enc_day_field">
@@ -62,9 +54,7 @@
             <option value="thursday" data-available-with="{% now 'W l' %}">Thursday</option>
             <option value="friday" data-available-with="{% now 'W l' %}">Friday</option>
         </select>
-
   </div>
-
   <div class="form-group" id="enc_div_field_2">
     <label for="enc_field_2"></label>
         <select id="enc_field_2" class="form-control " name="enc_field_2">
@@ -74,18 +64,16 @@
             <option value="gt" >greater_than</option>
             <option value="gtet" >greater_than_equal_to</option>
         </select>
-
   </div>
-
   <div class="form-group" style="display: none" id="enc_div_parent_3" >
     <label for="enc_parent_3"></label>
         <select id="enc_parent_3"  class="form-control " name="enc_parent_3">
           <option value="" data-available-with="ma_cross">Option ONE for up and downcross</option>
-
         </select>
-
   </div>
-
+<div class="form-group">
+  <label for="To add more Entry condition:"></label>
+  <input type="button" class="btn btn-success add_field_button form-control" value="+">
+</div>
     </fieldset><hr>
-
 </div>

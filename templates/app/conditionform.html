@@ -4,7 +4,7 @@
 
 <div class="col-md-3 register-left">
 <h1>
-{% lorem 30 w random %}
+Some random Text. <br> or anything you wish to insert here,(Image or ads).<br> <strong>Anything You wish for can be inserted here !</strong>
 </h1>
 </div>
 <div class="col-md-9">
@@ -41,6 +41,7 @@
     <input class="btn btn-primary" type="submit">
   </form>
 </div>
+
 {% endblock %}
 
 {# Additional scripts #}
@@ -49,6 +50,7 @@
       <script type="text/javascript">
         var currentTime  = '{% now "h:i:s" %}';
         var currentDay = '{% now "W l" %}';
+        // var entryForm = "{# {% include 'app/entrycondition.html' %} #}";
       </script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="{% static '/app/scripts/jquery.chainedTo.min.js' %}" type="text/javascript" charset="utf-8"></script>
