@@ -4,8 +4,15 @@ from django.http import HttpRequest, HttpResponse, Http404, FileResponse
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+import os
 
-from algobt.models import *
+
+from algo.settings import BASE_DIR
+from algobt.models import UserDataModel
+
+
+def restricted_404_view(request):
+    return Http404('SORRY! You Need To Login First. :)')
 
 
 def home(request):
@@ -22,35 +29,6 @@ def home(request):
     )
 
 
-def contact(request):
-    # Renders the contact page.
-
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/contact.html',
-        {
-            'title': 'Contact',
-            'message': 'Your contact page.',
-            'year': datetime.now().year,
-        }
-    )
-
-
-def about(request):
-    # Renders the about page.
-
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/about.html',
-        {
-            'title': 'About',
-            'message': 'Your application description page.',
-            'year': datetime.now().year,
-        }
-    )
-
 
 @login_required(redirect_field_name='login')
 def conditionForm(request):
@@ -60,7 +38,7 @@ def conditionForm(request):
                 raw_data = {'username': request.user, 'data': request.POST.dict()}
                 new_data = UserDataModel(**raw_data)
                 new_data.save()
-                return redirect('home')
+                return redirect('ShowRecords')
 
         else:
             return render(
@@ -91,7 +69,12 @@ def ShowDataRecords(request):
 def DownloadDataRecords(request, record_id):
     # Double check on user autentication
     if request.user.is_authenticated:
-        return FileResponse()  # Pass filePointer as argument
+        # obj = your_model_name.objects.get(id=id)
+        # filename = obj.model_attribute_name.path
+        filename = os.path.join(BASE_DIR, "README.md")
+        response = FileResponse(open(filename, 'rb'))
+        # print(os.path.join(BASE_DIR, "README.md"))
+        return response
         # return HttpResponse("<h1>" + str(record_id) + "</h1>")
     else:
         return Http404('NOT FOUND')
@@ -108,5 +91,36 @@ def FormValidation(raw_data):
         # print(raw_data.content_params)
         # print(raw_data.path)
         dict_data = raw_data.POST.dict()
-        print(dict_data)
+        # print(dict_data)
     return True
+
+
+
+def contact(request):
+    # Renders the contact page.
+
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/contact.html',
+        {
+            'title': 'Contact',
+            'message': 'Your contact page.',
+            'year': datetime.now().year,
+        }
+    )
+
+
+def about(request):
+    # Renders the about page.
+
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/about.html',
+        {
+            'title': 'About',
+            'message': 'Your application description page.',
+            'year': datetime.now().year,
+        }
+    )

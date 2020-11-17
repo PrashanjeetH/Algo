@@ -61,7 +61,7 @@ AUTHENTICATION_BACKENDS = (
 # ACCOUNT_FORMS = {'login': 'algobt.forms.BootstrapAuthenticationForm'}
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE=True
 ACCOUNT_USERNAME_BLACKLIST=['admin','Admin','administrator','Administrator']
-ACCOUNT_USERNAME_MIN_LENGTH = 8
+ACCOUNT_USERNAME_MIN_LENGTH = 5
 
 SITE_ID = 2
 
