@@ -28,14 +28,14 @@ $(function(){(
 $(document).ready(function(){
 		$("#enc_parent_1").on('change', function(abc) {
 			abc.preventDefault()
-				if ( this.value === currentTime) { // For Only time
+				if ( this.value === 'time') { // For Only time
 						$("#enc_div_time_field").show();
 						$("#enc_div_day_field").hide().val('');
 						$("#enc_div_child_1_1").hide().val('');
-						$("#enc_child_1_2").hide().val('');
+						$("#enc_div_child_1_2").hide().val('');
 						$("#enc_div_parent_3").hide().val('');
 				}
-				else if (this.value === currentDay){ //For only Day
+				else if (this.value === 'weekday'){ //For only Day
 						$("#enc_div_day_field").show();
 						$("#enc_div_time_field").hide().val('');
 						$("#enc_div_child_1_1").hide().val('');
@@ -59,14 +59,14 @@ $(document).ready(function(){
 $(document).ready(function(){
 		$("#exc_parent_1").on('change', function(abc) {
 			abc.preventDefault()
-				if ( this.value === currentTime) { // For Only time
+				if ( this.value === 'time') { // For Only time
 						$("#exc_div_time_field").show();
 						$("#exc_div_day_field").hide().val('');
 						$("#exc_div_child_1_1").hide().val('');
 						$("#exc_child_1_2").hide().val('');
 						$("#exc_div_parent_3").hide().val('');
 				}
-				else if (this.value === currentDay){ //For only Day
+				else if (this.value === 'weekday'){ //For only Day
 						$("#exc_div_day_field").show();
 						$("#exc_div_time_field").hide().val('');
 						$("#exc_div_child_1_1").hide().val('');
@@ -92,7 +92,7 @@ $(document).ready(function(){
   $(document).ready(function(){
   		$("#trl_parent_1").on('change', function(abc) {
   			abc.preventDefault()
-  				if ( this.value === currentTime) { // For Only time
+  				if ( this.value === 'time') { // For Only time
   						$("#trl_div_time_field").show();
   						$("#trl_div_day_field").hide().val('');
   						$("#trl_div_child_1_1").hide().val('');
@@ -102,7 +102,7 @@ $(document).ready(function(){
 							$("#trl_profit").hide().val('');
 
   				}
-  				else if (this.value === currentDay){ //For only Day
+  				else if (this.value === 'weekday'){ //For only Day
   						$("#trl_div_day_field").show();
   						$("#trl_div_time_field").hide().val('');
   						$("#trl_div_child_1_1").hide().val('');
@@ -165,6 +165,21 @@ $(document).ready(function(){
 						$("#rsk_percentage").hide().val('');
 					}
 			});
+	});
+
+	$(document).ready(function(){
+		$("#enc_child_1_2").on("change", function(abcd){
+			console.log("yeh wala function");
+			abcd.preventDefault();
+			if (this.value === 'ma_short') 	{
+				var text = '';
+				for (var i = 0; i < 10; i++) {
+					text.contact("<option value='"+$i+"' data-available-with='ma_cross+ma_short,bb+length' >ma_cross Short 01 macd </option>");
+				}
+				console.log(text);
+				$("#enc_child_1_2").append(text);
+			}
+		})
 	});
 
 //  FOR ADD MORE BUTTON

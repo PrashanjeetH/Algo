@@ -31,7 +31,7 @@ Some random Text. <br> or anything you wish to insert here,(Image or ads).<br> <
             class="trial_cond"
             checked name="checkbox"> Yes
         </label>
-
+          <hr>
         <div class="pass-box">
           {% include 'app/trialcondition.html' %}
         </div>
@@ -47,12 +47,10 @@ Some random Text. <br> or anything you wish to insert here,(Image or ads).<br> <
 {# Additional scripts #}
 
 {% block scripts %}
-      <script type="text/javascript">
-        var currentTime  = '{% now "h:i:s" %}';
-        var currentDay = '{% now "W l" %}';
-        var entryForm = "{# {% include 'app/entrycondition.html' %} #}";
-        console.log(entryForm);
-      </script>
+      <!-- <script type="text/javascript">
+        // var entryForm = "{# {% include 'app/entrycondition.html' %} #}";
+        // console.log(entryForm);
+      </script> -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="{% static '/app/scripts/jquery.chainedTo.min.js' %}" type="text/javascript" charset="utf-8"></script>
       <script src="{% static '/app/scripts/jquery.chainedTo.js' %}" type="text/javascript" charset="utf-8"></script>

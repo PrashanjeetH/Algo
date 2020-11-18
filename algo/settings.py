@@ -163,3 +163,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+
+ALLOWED_DATA = {
+'parent_1' : ['time', 'weekday', 'ma_cross', 'bb', 'st', 'macd', 'pattern', 'profit', 'risk_value'],
+'child_1_1': ['ma_long', 'ma_short', 'length', 'bb_mult', 'st_factor', 'macd_fast', 'macd_slow', 'macd_source', 'pattern_1', 'pattern_2', 'pattern_3', 'pattern_4'],
+'child_1_2': [''],
+'weekday'  : ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+'parent_2' : ['lteqt', 'lt', 'eqt', 'gt', 'gtet']
+}

@@ -8,8 +8,8 @@
     <label for="exc_parent_1"></label>
     <select id="exc_parent_1" class="form-control" name="exc_parent_1">
         <option selected disabled >--choose--</option>
-        <option value="{% now 'h:i:s' %}">Time</option>
-        <option value="{% now 'W l' %}">Day</option>
+        <option value="time">Time</option>
+        <option value="weekday">Day</option>
         <option value="ma_cross">MA_Cross</option>
         <option value="bb">BB</option>
         <option value="st">ST</option>
@@ -56,18 +56,18 @@
   <div class="form-group" style="display: none" id="exc_div_day_field">
     <label for="day_"></label>
         <select id="exc_day_field"  class="form-control " name="exc_day_field">
-          <option value="monday" selectedx  data-available-with="{% now 'W l' %}" >Monday</option>
-            <option value="tuesday" data-available-with="{% now 'W l' %}">Tuesday</option>
-            <option value="wednesday" data-available-with="{% now 'W l' %}">Wednesday</option>
-            <option value="thursday" data-available-with="{% now 'W l' %}">Thursday</option>
-            <option value="friday" data-available-with="{% now 'W l' %}">Friday</option>
+          <option value="monday" selectedx  data-available-with="'weekday'" >Monday</option>
+            <option value="tuesday" data-available-with="'weekday'">Tuesday</option>
+            <option value="wednesday" data-available-with="'weekday'">Wednesday</option>
+            <option value="thursday" data-available-with="'weekday'">Thursday</option>
+            <option value="friday" data-available-with="'weekday'">Friday</option>
         </select>
 
   </div>
 
-  <div class="form-group" id="exc_div_field_2">
-    <label for="exc_field_2"></label>
-        <select id="exc_field_2" class="form-control " name="exc_field_2">
+  <div class="form-group" id="exc_div_parent_2">
+    <label for="exc_parent_2"></label>
+        <select id="exc_parent_2" class="form-control " name="exc_parent_2">
             <option value="lteqt" selected="selected">less_than_equal_to</option>
             <option value="lt" >less_than</option>
             <option value="eqt">equal_to</option>
