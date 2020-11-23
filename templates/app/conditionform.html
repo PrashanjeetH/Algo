@@ -11,9 +11,19 @@ Some random Text. <br> or anything you wish to insert here,(Image or ads).<br> <
   <h2>{{ title }}.</h2>
   <h3>{{ message }}</h3><hr>
   {% if errors %}
-    {% for error in errors %}
-      <p class=""></p>
-    {% endfor %}
+  <!-- <strong style="color:red">WARNINGS !!</strong> -->
+  <div style="color:red"id="error-container">
+    <button type="button" class="close" data-dismiss="alert">&times</button>
+    <strong>Warnings!</strong>
+    <ol>
+
+      {% for error in errors %}
+        <li>{{ error }}</li>
+      <!-- <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+      {% endfor %}
+  </ol>
+  <hr>
+  </div>
   {% endif %}
   {#  Condition Form starts here!  #}
   <form method="post" class="form-inline">
@@ -47,10 +57,12 @@ Some random Text. <br> or anything you wish to insert here,(Image or ads).<br> <
 {# Additional scripts #}
 
 {% block scripts %}
-      <!-- <script type="text/javascript">
-        // var entryForm = "{# {% include 'app/entrycondition.html' %} #}";
-        // console.log(entryForm);
-      </script> -->
+      <script type="text/javascript">
+      #error-container {
+    	     margin-top:10px;
+    	     position: fixed;
+    	}
+      </script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="{% static '/app/scripts/jquery.chainedTo.min.js' %}" type="text/javascript" charset="utf-8"></script>
       <script src="{% static '/app/scripts/jquery.chainedTo.js' %}" type="text/javascript" charset="utf-8"></script>

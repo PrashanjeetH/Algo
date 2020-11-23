@@ -33,8 +33,10 @@ def home(request):
 @login_required(redirect_field_name='login')
 def conditionForm(request):
     if request.user.is_authenticated:
+        errors=''
+        errors, validate =  FormValidation(request)
         if request.POST:
-            if FormValidation(request):
+            if validate:
                 raw_data = {'username': request.user, 'data': request.POST.dict()}
                 new_data = UserDataModel(**raw_data)
                 new_data.save()
@@ -48,6 +50,7 @@ def conditionForm(request):
                     'title': 'Condition Form',
                     'message': 'Your application Condition Form page.',
                     'year': datetime.now().year,
+                    'errors':errors,
                 }
             )
 
@@ -81,6 +84,8 @@ def DownloadDataRecords(request, record_id):
 
 
 def FormValidation(raw_data):
+    errors = ['The name is wrong!', 'The last name is wrong!']
+    validate=True
     if raw_data.POST:
         print("Successfull!\n")
         # print(raw_data.user)
@@ -92,7 +97,7 @@ def FormValidation(raw_data):
         # print(raw_data.path)
         dict_data = raw_data.POST.dict()
         # print(dict_data)
-    return True
+    return errors, validate
 
 
 
